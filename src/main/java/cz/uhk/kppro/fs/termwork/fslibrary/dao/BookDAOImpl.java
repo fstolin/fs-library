@@ -25,7 +25,7 @@ public class BookDAOImpl implements BookDAO {
 	// get all customers
 	@Override
 	public List<PhysicalCopy> getAllBookCopies() {
-		TypedQuery<PhysicalCopy> theQuery = entityManager.createQuery("from PhysicalCopy order by id", PhysicalCopy.class);
+		TypedQuery<PhysicalCopy> theQuery = entityManager.createQuery("from PhysicalCopy order by bookDetails", PhysicalCopy.class);
 		return theQuery.getResultList();
 	}
 	

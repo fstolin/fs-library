@@ -1,4 +1,4 @@
-package cz.uhk.kppro.fs.termwork.fslibrary.service;
+	package cz.uhk.kppro.fs.termwork.fslibrary.service;
 
 import java.util.List;
 
@@ -47,6 +47,17 @@ public class CustomerServiceImpl implements CustomerService {
 	@Transactional
 	public void deleteCustomer(int id) {
 		customerDAO.deleteCustomer(id);		
+	}
+	
+	@Override
+	@Transactional
+	public void addCustomerBorrowing(int id, PhysicalCopy c) {
+		Customer cust = getCustomer(id);
+		System.out.println(">> Inside addCustomerBorrowing " + cust);
+		System.out.println(">> PhysicalCopy " + c);
+		cust.borrowPhysicalCopy(c);
+		System.out.println(">> Borrowed:  " + cust);
+		customerDAO.addCustomer(cust);
 	}
 
 	@Override

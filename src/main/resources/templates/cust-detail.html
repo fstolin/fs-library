@@ -46,18 +46,26 @@
 									margin-top: 5%">
 						<a 	th:href="@{/customer/list}"
 							class="btn btn-danger mb-2">Back</a>
-								<a 	th:href="@{/customer/borrow?{id}(id=${customer.id})}"
+								<a 	th:href="@{/customer/borrow?customerId={id}(id=${customer.id})}"
 							class="btn btn-warning mb-2">New Borrowing</a>
+						</div>
+						<!--  SUCCESS MESSAGE -->
+						<div style="color: green; margin-left: 15%">
+						
+							<p th:text="${successBorrowing} ? 'Success!' : ''"/>
+						
 						</div>
 							<!--  END -->
     			</div>
     			<div class="col-sm">
-      					<h5>Borrowings:</h5></p>
+      					<h5>Borrowings:</h5>
       					<form action="x" 	th:action="@{/customer/saveCustomer}"
 						th:object="${borrowings}"
 						method="POST">
-								<select th:field="${borrowings}" class="form-select mb-2" size="12" style="width : 99.33%">
-						    		<option th:each="borrowing : ${borrowings}" th:text="${borrowing.bookDetails}">
+								<select th:field="${borrowings}" class="form-select mb-2" size="12" style="width : 99.33%" disabled>
+						    		<option th:each="borrowing : ${borrowings}" 
+						    				th:text="${borrowing.bookDetails.name} + ', ' + ${borrowing.bookDetails.year} + ', ISBN: ' + ${borrowing.bookDetails.isbn}" 
+						    				value="{borrowing}">
 						    		</option>
 								</select>
 					</form>		

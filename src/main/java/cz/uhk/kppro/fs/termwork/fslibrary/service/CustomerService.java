@@ -17,5 +17,7 @@ public interface CustomerService {
 	public void deleteCustomer(int id);
 	
 	public List<PhysicalCopy> getAllBorrowingsByID(int id);
+
+	void addCustomerBorrowing(int id, PhysicalCopy c);
 	
 }

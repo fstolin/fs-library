@@ -3,6 +3,7 @@ package cz.uhk.kppro.fs.termwork.fslibrary.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,19 +64,18 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/showCustomerDetail")
-	public String showCustomerDetail (@RequestParam("customerId") int id, Model theModel) {
+	public String showCustomerDetail (@RequestParam("customerId") int id, Model theModel, @Param("success") boolean success) {
 		Customer cust = customerService.getCustomer(id);
 		List<PhysicalCopy> borrowings = cust.getBorrowedCopies();
 		theModel.addAttribute("customer", cust);
 		theModel.addAttribute("borrowings", borrowings);
+		theModel.addAttribute("successBorrowing", success);
 		return "cust-detail";
 	}
 	
 	@GetMapping("/borrow")
-	public String showBorrowFormular(@RequestParam("customerId") int id, Model theModel) {
-		Customer cust = customerService.getCustomer(id);
-		theModel.addAttribute("customer", cust);
-		return "borrow-form";
+	public String showBorrowFormular(@RequestParam("customerId") int id, Model theModel) {		
+		return "redirect:/borrowings/showBorrowFormCust?customerId=" + id;
 	}
 	
 }

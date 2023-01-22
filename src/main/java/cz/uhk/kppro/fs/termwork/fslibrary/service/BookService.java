@@ -25,5 +25,9 @@ public interface BookService {
 	public BookDetails getBookDetailsById(int id);
 
 	public void deleteBookDetails(int id);
+
+	List<BookDetails> getAvailablePublications();
+	
+	public int setBorrowedByDetailsId(int id);
 	
 }

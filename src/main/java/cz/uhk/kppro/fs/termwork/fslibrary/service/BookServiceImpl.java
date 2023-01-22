@@ -1,5 +1,6 @@
 package cz.uhk.kppro.fs.termwork.fslibrary.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,44 @@ public class BookServiceImpl implements BookService {
 				bookDAO.addBookCopies(book);
 			}	
 		}	
+	}
+	
+	// Get Publications available to borrow
+	@Override
+	@Transactional
+	public List<BookDetails> getAvailablePublications(){
+		List<BookDetails> pList = new ArrayList<>();
+		List<PhysicalCopy> copyList = getAllBookCopies();
+		
+		for (PhysicalCopy copy : copyList){
+			BookDetails bDetails = copy.getBookDetails();
+			// If the book is already in the available books, or the physical copy is borrowed, skip to next
+			if (pList.contains(bDetails) || copy.getBorrowed() == 1){
+				continue;
+			} else {
+				pList.add(bDetails);
+			}
+		}
+		System.out.println(pList);
+		return pList;
+	}
+	
+	// Set physical copy as borrowed by Book Details id. There shouldn't be a case, where a single physical copy wouldn't be available
+	// Returns physical copy book ID
+	@Override
+	@Transactional
+	public int setBorrowedByDetailsId(int id) {
+		BookDetails bDetails = bookDAO.getBookDetailsById(id);
+		List<PhysicalCopy> copies = bDetails.getPhysicalBooks();
+		// loop through copies and select the first available
+		for (PhysicalCopy c : copies) {
+			if (c.getBorrowed() == 0) {
+				c.setBorrowed(1);
+				bookDAO.addBookCopies(c);
+				return c.getId();
+			}
+		}
+		return 0;
 	}
 
 

@@ -19,7 +19,7 @@ public class BookDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="name")
 	private String name;
@@ -48,11 +48,12 @@ public class BookDetails {
 		this.isbn = isbn;
 	}
 
-	public int getId() {
+	
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -87,7 +88,15 @@ public class BookDetails {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	
+
+	public List<PhysicalCopy> getPhysicalBooks() {
+		return physicalBooks;
+	}
+
+	public void setPhysicalBooks(List<PhysicalCopy> physicalBooks) {
+		this.physicalBooks = physicalBooks;
+	}
+
 	public void addPhysicalCopies(PhysicalCopy pc) {
 		if (physicalBooks==null) {
 			physicalBooks = new ArrayList<PhysicalCopy>();
