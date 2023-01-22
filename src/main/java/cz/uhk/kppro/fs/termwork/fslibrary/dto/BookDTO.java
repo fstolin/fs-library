@@ -17,7 +17,7 @@ public class BookDTO {
 	public BookDTO() {
 	}
 
-	public BookDTO(int detailId, int amountOfCopies, List<BookDetails> details) {
+	public BookDTO(Integer detailId, Integer amountOfCopies, List<BookDetails> details) {
 		this.detailId = detailId;
 		this.amountOfCopies = amountOfCopies;
 		this.details = details;

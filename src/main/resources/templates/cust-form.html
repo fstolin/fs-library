@@ -20,9 +20,9 @@
 						method="POST">
 		<input type="hidden" th:field="*{id}"/>
 		<input type="hidden" th:field="*{registrationDate}"/>
-		<input type="text" th:field="*{firstName}" class="form-control mb-4 col-2" placeholder="First name" style="width : 35.33%" />
-		<input type="text" th:field="*{lastName}" class="form-control mb-4 col-2" placeholder="Last name" style="width : 35.33%" />
-		<input type="text" th:field="*{email}" class="form-control mb-4 col-2" placeholder="Email" style="width : 35.33%" />
+		<input type="text" th:field="*{firstName}" class="form-control mb-4 col-2" placeholder="First name" style="width : 35.33%" required />
+		<input type="text" th:field="*{lastName}" class="form-control mb-4 col-2" placeholder="Last name" style="width : 35.33%" required/>
+		<input type="text" th:field="*{email}" class="form-control mb-4 col-2" placeholder="Email" style="width : 35.33%" required/>
 		
 		<button type="button" onclick="window.location.href='/customer/list'" class="btn btn-danger col-2 me-3">Back</button><button type="submit" class="btn btn-success col-2">Save</button>
 	</form>	

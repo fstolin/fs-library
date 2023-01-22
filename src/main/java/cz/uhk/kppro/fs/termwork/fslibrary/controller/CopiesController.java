@@ -39,6 +39,8 @@ public class CopiesController {
 		// DTO for detailID & Amount
 		BookDTO dto = new BookDTO();
 		dto.setDetails(details);
+		// Default 1
+		dto.setAmountOfCopies(1);
 		
 		theModel.addAttribute("copy",pc);
 		theModel.addAttribute("bookDto",dto);

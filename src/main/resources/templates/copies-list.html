@@ -30,10 +30,12 @@
 	
 	<table class="table table-hover table-bordered table-striped">
 		<thead>
-			<tr class="table-dark">
+			<tr class="table-dark text-center align-middle">
 				<th>Name</th>
 				<th>Borrowed</th>
-				<th></th>
+				<th>					<a 	th:href="@{/copies/showFormForAdd}"
+					class="btn btn-outline-warning">Add copies</a>
+					</th>
 			</tr>
 		</thead>	
 		<tbody>	
@@ -54,7 +56,7 @@
 	
 		<!--  Add Button for adding books -->
 	<a 	th:href="@{/copies/showFormForAdd}"
-		class="btn btn-secondary mb-2">Add book</a>
+		class="btn btn-secondary mb-2">Add copies</a>
 </div>
 </body>
 </html>
