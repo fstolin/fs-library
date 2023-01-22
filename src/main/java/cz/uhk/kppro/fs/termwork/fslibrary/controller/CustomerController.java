@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cz.uhk.kppro.fs.termwork.fslibrary.entity.Customer;
+import cz.uhk.kppro.fs.termwork.fslibrary.entity.PhysicalCopy;
 import cz.uhk.kppro.fs.termwork.fslibrary.service.CustomerService;
 
 @Controller
@@ -63,8 +64,18 @@ public class CustomerController {
 	
 	@GetMapping("/showCustomerDetail")
 	public String showCustomerDetail (@RequestParam("customerId") int id, Model theModel) {
-		theModel.addAttribute(customerService.getCustomer(id));
+		Customer cust = customerService.getCustomer(id);
+		List<PhysicalCopy> borrowings = cust.getBorrowedCopies();
+		theModel.addAttribute("customer", cust);
+		theModel.addAttribute("borrowings", borrowings);
 		return "cust-detail";
+	}
+	
+	@GetMapping("/borrow")
+	public String showBorrowFormular(@RequestParam("customerId") int id, Model theModel) {
+		Customer cust = customerService.getCustomer(id);
+		theModel.addAttribute("customer", cust);
+		return "borrow-form";
 	}
 	
 }

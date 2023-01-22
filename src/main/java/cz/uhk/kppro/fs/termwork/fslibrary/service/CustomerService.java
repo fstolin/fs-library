@@ -3,6 +3,7 @@ package cz.uhk.kppro.fs.termwork.fslibrary.service;
 import java.util.List;
 
 import cz.uhk.kppro.fs.termwork.fslibrary.entity.Customer;
+import cz.uhk.kppro.fs.termwork.fslibrary.entity.PhysicalCopy;
 
 // Service interface for business logic
 public interface CustomerService {
@@ -14,5 +15,7 @@ public interface CustomerService {
 	public Customer getCustomer(int id);
 
 	public void deleteCustomer(int id);
+	
+	public List<PhysicalCopy> getAllBorrowingsByID(int id);
 	
 }

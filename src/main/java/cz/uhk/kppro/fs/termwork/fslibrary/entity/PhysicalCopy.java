@@ -1,12 +1,17 @@
 package cz.uhk.kppro.fs.termwork.fslibrary.entity;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -28,7 +33,17 @@ public class PhysicalCopy {
 	@JoinColumn(name="book_detail_id")
 	private BookDetails bookDetails;
 	
-	public PhysicalCopy() {
+	@ManyToMany(fetch=FetchType.LAZY, cascade= 
+		{CascadeType.DETACH, CascadeType.MERGE,
+		 CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinTable(
+			name="book_customer",
+			joinColumns = @JoinColumn(name="book_id"),
+			inverseJoinColumns = @JoinColumn(name="customer_id")
+			)
+	private List<Customer> borrowers;
+	
+	public PhysicalCopy() {	
 		
 	}
 

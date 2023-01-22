@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.uhk.kppro.fs.termwork.fslibrary.dao.CustomerDAO;
 import cz.uhk.kppro.fs.termwork.fslibrary.entity.Customer;
+import cz.uhk.kppro.fs.termwork.fslibrary.entity.PhysicalCopy;
 
 // Implementation of customer service interface. Business logic goes here.
 @Service
@@ -46,5 +47,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Transactional
 	public void deleteCustomer(int id) {
 		customerDAO.deleteCustomer(id);		
+	}
+
+	@Override
+	public List<PhysicalCopy> getAllBorrowingsByID(int id) {
+		// TODO unimpl
+		return null;
 	}
 }
