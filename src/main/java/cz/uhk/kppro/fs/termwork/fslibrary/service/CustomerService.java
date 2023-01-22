@@ -1,18 +1,18 @@
-package cz.uhk.kppro.fs.termwork.fslibrary.dao;
+package cz.uhk.kppro.fs.termwork.fslibrary.service;
 
 import java.util.List;
 
 import cz.uhk.kppro.fs.termwork.fslibrary.entity.Customer;
 
-// DAO interface for database communication
-public interface CustomerDAO {
+// Service interface for business logic
+public interface CustomerService {
 	
 	public List<Customer> getCustomers();
-	
-	public void addCustomer(Customer customer);
 
+	public void saveCustomer(Customer customer);
+	
 	public Customer getCustomer(int id);
 
 	public void deleteCustomer(int id);
-
+	
 }

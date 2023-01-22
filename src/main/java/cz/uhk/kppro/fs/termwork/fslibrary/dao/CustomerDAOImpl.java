@@ -3,11 +3,14 @@ package cz.uhk.kppro.fs.termwork.fslibrary.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import cz.uhk.kppro.fs.termwork.fslibrary.entity.Customer;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
+// Customer DAO implementation
+@Repository
 public class CustomerDAOImpl implements CustomerDAO {
 	
 	private EntityManager entityManager;
