@@ -36,7 +36,7 @@ public class CustomerController {
 	public String showFormForAdd(Model theModel) {
 		Customer theCustomer = new Customer();
 		theModel.addAttribute("customer",theCustomer);		
-		return "customer-form";
+		return "cust-form";
 	}
 	
 	// Saving customer from form
@@ -51,7 +51,7 @@ public class CustomerController {
 									Model theModel) {
 		Customer theCustomer = customerService.getCustomer(theID);
 		theModel.addAttribute("customer", theCustomer);		
-		return "customer-form";
+		return "cust-form";
 	}
 	
 	@GetMapping("/deleteCustomer")

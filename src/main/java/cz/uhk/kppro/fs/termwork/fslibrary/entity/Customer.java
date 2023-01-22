@@ -28,7 +28,7 @@ public class Customer {
 	private String email;
 	
 	@Column(name="registration_date")
-	private Date date;
+	private Date registrationDate;
 	
 	public Customer() {
 		
@@ -39,7 +39,7 @@ public class Customer {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.date = date;
+		this.registrationDate = date;
 	}
 
 
@@ -75,18 +75,18 @@ public class Customer {
 		this.email = email;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getRegistrationDate() {
+		return registrationDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setRegistrationDate(Date date) {
+		this.registrationDate = date;
 	}
 
 	@Override
 	public String toString() {
 		return "CustomerEntity [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", date=" + date + "]";
+				+ ", date=" + registrationDate + "]";
 	}		
 	
 }

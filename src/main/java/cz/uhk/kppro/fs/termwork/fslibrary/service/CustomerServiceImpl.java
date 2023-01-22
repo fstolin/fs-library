@@ -29,6 +29,8 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@Transactional
 	public void saveCustomer(Customer customer) {
+		// Date of registration = current date
+		customer.setRegistrationDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
 		customerDAO.addCustomer(customer);		
 	}
 
