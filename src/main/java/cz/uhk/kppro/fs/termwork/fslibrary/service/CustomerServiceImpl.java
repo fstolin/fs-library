@@ -1,9 +1,5 @@
 package cz.uhk.kppro.fs.termwork.fslibrary.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +47,4 @@ public class CustomerServiceImpl implements CustomerService {
 	public void deleteCustomer(int id) {
 		customerDAO.deleteCustomer(id);		
 	}
-	
-	private String getCurrentDate() {
-		Date currentDate = Calendar.getInstance().getTime();  
-		DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
-		return dateFormat.format(currentDate);
-	}
-
 }

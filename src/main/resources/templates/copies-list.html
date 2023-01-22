@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FS Library - Customer form</title>
+    <title>FS Library - Book form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
 
 		<div class="container">
 		<header
@@ -25,25 +24,38 @@
 			</div>
 		</div>
 		<div class="container text-center">
-			<p class="border-bottom py4"> <h3>Customer detail</h3></p>
+			<p class="border-bottom py4"> <h3>Book list</h3></p>
 		</div>
-		
 		<!--  END OF HEADER -->
-	<form action="x" 	th:action="@{/customer/saveCustomer}"
-						th:object="${customer}"
-						method="POST">
-		First name: <input type="text" th:field="*{firstName}" class="form-control mb-4 col-2" placeholder="First name" disabled style="width : 35.33%" />
-		Last name: <input type="text" th:field="*{lastName}" class="form-control mb-4 col-2" placeholder="Last name" disabled style="width : 35.33%" />
-		Email: <input type="text" th:field="*{email}" class="form-control mb-4 col-2" placeholder="Email" disabled style="width : 35.33%" />
-		Registration date: <input type="text" th:field="*{registrationDate}" class="form-control mb-4 col-2" placeholder="Email" disabled style="width : 35.33%" />
-	</form>
-		<!--  BUTTONS -->
-	<a 	th:href="@{/customer/list}"
-		class="btn btn-danger mb-2">Back</a>
-			<a 	th:href="@{/customer/list}"
-		class="btn btn-warning mb-2">New Borrowing</a>
+	
+	<table class="table table-hover table-bordered table-striped">
+		<thead>
+			<tr class="table-dark">
+				<th>Name</th>
+				<th>Borrowed</th>
+				<th></th>
+			</tr>
+		</thead>	
+		<tbody>	
+
 		
-		<!--  END -->
+			<tr th:each="tempBook : ${copies}">
+				<td th:text="${tempBook.bookDetails.name}"/>
+				<td th:text="${tempBook.borrowed}"/>
+				<td style="text-align: center">
+						<a 	th:href="@{/copies/showFormForUpdate(BookId=${tempBook.id})}" class="btn btn-primary btn-sm mb-1">Update</a>
+						<a 	th:href="@{/copies/showBookDetail(BookId=${tempBook.id})}" class="btn btn-primary btn-sm mb-1">Detail</a>
+						<a 	th:href="@{/copies/deleteBook(BookId=${tempBook.id})}" class="btn btn-danger btn-sm mb-1"
+							onclick="if (confirm('Are you sure you want to delete this book?')){window.location.href='${deleteLink}';} else { return false; }">Delete</a>
+							
+				</td>
+			</tr>
+		</tbody>	
+	</table>
+	
+		<!--  Add Button for adding books -->
+	<a 	th:href="@{/copies/showFormForAdd}"
+		class="btn btn-secondary mb-2">Add book</a>
 </div>
 </body>
 </html>
