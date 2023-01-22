@@ -3,6 +3,7 @@ package cz.uhk.kppro.fs.termwork.fslibrary.entity;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +32,9 @@ public class Customer {
 	
 	@Column(name="registration_date")
 	private String registrationDate;
+	
+	
+	private List<PhysicalCopy> borrowedCopies;
 	
 	public Customer() {
 		
