@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Add Physical Copy</title>
+<title>Add physical copies</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,18 +13,18 @@
 <div class="container">
 	
 	<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"><h3>Customer directory</h3></header>
-	<p class="h4 mb-4">Add Physical Copy</p>
+	<p class="h4 mb-4">Add physical copies</p>
 	
 	<form action="x" 	th:action="@{/copies/saveCopies}"
 						th:object="${copy}"
 						method="POST">
 		<input type="hidden" th:field="*{id}"/>
-		<input type="hidden" th:field="*{registrationDate}"/>
-		<input type="text" th:field="*{firstName}" class="form-control mb-4 col-2" placeholder="First name" style="width : 35.33%" />
-		<input type="text" th:field="*{lastName}" class="form-control mb-4 col-2" placeholder="Last name" style="width : 35.33%" />
-		<input type="text" th:field="*{email}" class="form-control mb-4 col-2" placeholder="Email" style="width : 35.33%" />
-		
-		<button type="button" onclick="window.location.href='/customer/list'" class="btn btn-danger col-2 me-3">Back</button><button type="submit" class="btn btn-success col-2">Save</button>
+		<select th:field="${bookDto.detailId}" class="form-select mb-2" size="4" style="width : 35.33%">
+    		<option th:each="detail : ${bookDto.details}" th:text="${detail.name}" th:value="${detail.id}">
+    		</option>
+		</select>
+		<input type="text" th:field="(${bookDto.amountOfCopies})" th:value="(${amountOfCopies})" class="form-control mb-4 col-2" placeholder="Number of copies" style="width : 35.33%" />
+		<button type="button" onclick="window.location.href='/copies/list'" class="btn btn-danger col-2 me-3">Back</button><button type="submit" value="SAVE" class="btn btn-success col-2">Save</button>
 	</form>	
 </div>
 </body>

@@ -12,6 +12,8 @@ public interface BookService {
 
 	public void saveBookCopy(PhysicalCopy book);
 	
+	public void saveBookCopy(PhysicalCopy book, int amount);
+	
 	public PhysicalCopy getBookCopy(int id);
 
 	public void deleteBookCopy(int id);
