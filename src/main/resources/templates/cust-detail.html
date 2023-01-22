@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FS Library - Customer form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+		<div class="container">
+		<header
+			class="d-flex flex-wrap justify-content-center py-3 mb-2 border-bottom">
+			<h3>FS Library</h3>
+		</header>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm text-center"><a th:href="@{/customer/list}" class="btn btn-primary mb-2">Customers</a></div>
+				<div class="col-sm text-center"><a th:href="@{/book/list}" class="btn btn-primary mb-2">Books</a></div>
+				<div class="col-sm text-center"><a th:href="@{/borrowing/list}" class="btn btn-primary mb-2">Borrowings</a></div>
+				<div class="col-sm text-center"> <a th:href="@{/author/list}" class="btn btn-primary mb-2">Authors</a></div>
+			</div>
+		</div>
+		<div class="container text-center">
+			<p class="border-bottom py4"> <h3>Customer detail</h3></p>
+		</div>
+		
+		<!--  END OF HEADER -->
+	<form action="x" 	th:action="@{/customer/saveCustomer}"
+						th:object="${customer}"
+						method="POST">
+		First name: <input type="text" th:field="*{firstName}" class="form-control mb-4 col-2" placeholder="First name" disabled style="width : 35.33%" />
+		Last name: <input type="text" th:field="*{lastName}" class="form-control mb-4 col-2" placeholder="Last name" disabled style="width : 35.33%" />
+		Email: <input type="text" th:field="*{email}" class="form-control mb-4 col-2" placeholder="Email" disabled style="width : 35.33%" />
+		Registration date: <input type="text" th:field="*{registrationDate}" class="form-control mb-4 col-2" placeholder="Email" disabled style="width : 35.33%" />
+	</form>
+		<!--  BUTTONS -->
+	<a 	th:href="@{/customer/list}"
+		class="btn btn-danger mb-2">Back</a>
+			<a 	th:href="@{/customer/list}"
+		class="btn btn-warning mb-2">New Borrowing</a>
+		
+		<!--  END -->
+</div>
+</body>
+</html>

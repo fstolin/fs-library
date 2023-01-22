@@ -2,7 +2,6 @@ package cz.uhk.kppro.fs.termwork.fslibrary.entity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -94,8 +93,8 @@ public class Customer {
 	}	
 	
 	public void setOriginalRegistrationDate() {
-		Date currentDate = Calendar.getInstance().getTime();  
-		DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
+		Date currentDate = new java.util.Date();
+		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		this.registrationDate =  dateFormat.format(currentDate);
 	}
 	

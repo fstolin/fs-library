@@ -59,6 +59,12 @@ public class CustomerController {
 	public String deleteCustomer(@RequestParam("customerId") int id, Model theModel) {
 		customerService.deleteCustomer(id);
 		return "redirect:/customer/list";
-	}	
+	}
+	
+	@GetMapping("/showCustomerDetail")
+	public String showCustomerDetail (@RequestParam("customerId") int id, Model theModel) {
+		theModel.addAttribute(customerService.getCustomer(id));
+		return "cust-detail";
+	}
 	
 }
