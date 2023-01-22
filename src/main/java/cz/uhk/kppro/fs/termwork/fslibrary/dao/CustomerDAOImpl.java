@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import cz.uhk.kppro.fs.termwork.fslibrary.entity.Customer;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 // Customer DAO implementation
@@ -24,7 +25,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	// get all customers
 	@Override
 	public List<Customer> getCustomers() {
-		TypedQuery<Customer> theQuery = entityManager.createQuery("from Customer", Customer.class);
+		TypedQuery<Customer> theQuery = entityManager.createQuery("from Customer order by lastName", Customer.class);
 		return theQuery.getResultList();
 	}
 	
@@ -43,7 +44,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	// delete customer by id
 	@Override
 	public void deleteCustomer(int id) {
-		TypedQuery<Customer> theQuery = entityManager.createQuery("delete from Customer where id =:theID", Customer.class);
+		Query theQuery = entityManager.createQuery("delete from Customer where id =:theID");
 		theQuery.setParameter("theID", id);
 		theQuery.executeUpdate();
 	}

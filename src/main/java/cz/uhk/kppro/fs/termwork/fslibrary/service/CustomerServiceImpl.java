@@ -1,5 +1,9 @@
 package cz.uhk.kppro.fs.termwork.fslibrary.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +33,10 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@Transactional
 	public void saveCustomer(Customer customer) {
-		// Date of registration = current date
-		customer.setRegistrationDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+		// Date of registration - only for new customers
+		if (customer.getRegistrationDate().equals("") || customer.getRegistrationDate().isEmpty() || customer.getRegistrationDate().equals(null)) {
+			customer.setOriginalRegistrationDate();
+		}
 		customerDAO.addCustomer(customer);		
 	}
 
@@ -44,6 +50,12 @@ public class CustomerServiceImpl implements CustomerService {
 	@Transactional
 	public void deleteCustomer(int id) {
 		customerDAO.deleteCustomer(id);		
+	}
+	
+	private String getCurrentDate() {
+		Date currentDate = Calendar.getInstance().getTime();  
+		DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
+		return dateFormat.format(currentDate);
 	}
 
 }

@@ -1,6 +1,9 @@
 package cz.uhk.kppro.fs.termwork.fslibrary.entity;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,18 +31,17 @@ public class Customer {
 	private String email;
 	
 	@Column(name="registration_date")
-	private Date registrationDate;
+	private String registrationDate;
 	
 	public Customer() {
 		
 	}	
 	
 
-	public Customer(String firstName, String lastName, String email, Date date) {
+	public Customer(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.registrationDate = date;
 	}
 
 
@@ -75,18 +77,26 @@ public class Customer {
 		this.email = email;
 	}
 
-	public Date getRegistrationDate() {
+	public String getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Date date) {
-		this.registrationDate = date;
+
+	public void setRegistrationDate(String registrationDate) {
+		this.registrationDate = registrationDate;
 	}
+
 
 	@Override
 	public String toString() {
 		return "CustomerEntity [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", date=" + registrationDate + "]";
-	}		
+	}	
+	
+	public void setOriginalRegistrationDate() {
+		Date currentDate = Calendar.getInstance().getTime();  
+		DateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
+		this.registrationDate =  dateFormat.format(currentDate);
+	}
 	
 }

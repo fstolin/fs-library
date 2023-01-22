@@ -15,12 +15,13 @@
 	<a 	th:href="@{/customer/showFormForAdd}"
 		class="btn btn-secondary mb-2">Add Customer</a>
 	
-	<table class="table table-bordered table-striped">
+	<table class="table table-hover table-bordered table-striped">
 		<thead>
 			<tr class="table-dark">
 				<th>First name</th>
 				<th>Last name</th>
 				<th>Email</th>
+				<th>Date of registration</th>
 				<th></th>
 			</tr>
 		</thead>	
@@ -31,8 +32,13 @@
 				<td th:text="${tempCustomer.firstName}"/>
 				<td th:text="${tempCustomer.lastName}"/>
 				<td th:text="${tempCustomer.email}"/>
-				<td>
-						<a 	th:href="@{/customers/showFormForUpdate(employeeId=${tempCustomer.id})}" class="btn btn-secondary btn-sm mb-1">Update</a>
+				<td th:text="${tempCustomer.registrationDate}"/>
+				<td style="text-align: center">
+						<a 	th:href="@{/customer/showFormForUpdate(customerId=${tempCustomer.id})}" class="btn btn-primary btn-sm mb-1">Update</a>
+						<a 	th:href="@{/customer/showFormForUpdate(customerId=${tempCustomer.id})}" class="btn btn-primary btn-sm mb-1">Detail</a>
+						<a 	th:href="@{/customer/deleteCustomer(customerId=${tempCustomer.id})}" class="btn btn-danger btn-sm mb-1"
+							onclick="if (confirm('Are you sure you want to delete this customer?')){window.location.href='${deleteLink}';} else { return false; }">Delete</a>
+							
 				</td>
 			</tr>
 		</tbody>	
