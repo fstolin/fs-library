@@ -27,12 +27,12 @@
 		<tbody>	
 
 		
-			<tr th:each="tempEmployee : ${customers}">
-				<td th:text="${tempEmployee.firstName}"/>
-				<td th:text="${tempEmployee.lastName}"/>
-				<td th:text="${tempEmployee.email}"/>
+			<tr th:each="tempCustomer : ${customers}">
+				<td th:text="${tempCustomer.firstName}"/>
+				<td th:text="${tempCustomer.lastName}"/>
+				<td th:text="${tempCustomer.email}"/>
 				<td>
-						<a 	th:href="@{/customers/showFormForUpdate(employeeId=${tempEmployee.id})}" class="btn btn-secondary btn-sm mb-1">Update</a>
+						<a 	th:href="@{/customers/showFormForUpdate(employeeId=${tempCustomer.id})}" class="btn btn-secondary btn-sm mb-1">Update</a>
 				</td>
 			</tr>
 		</tbody>	
