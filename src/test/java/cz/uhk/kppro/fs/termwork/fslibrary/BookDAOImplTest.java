@@ -9,14 +9,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import cz.uhk.kppro.fs.termwork.fslibrary.dao.BookDAOImpl;
-import cz.uhk.kppro.fs.termwork.fslibrary.dao.CustomerDAOImpl;
 import cz.uhk.kppro.fs.termwork.fslibrary.entity.BookDetails;
-import cz.uhk.kppro.fs.termwork.fslibrary.entity.Customer;
 import jakarta.persistence.EntityManager;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-class CustomerDAOImplTest {
+public class BookDAOImplTest {
 	
 	// UNIT TEST EXECUTION
 	// Preparation - Execution - Assertion
@@ -25,27 +23,25 @@ class CustomerDAOImplTest {
     private EntityManager entityManager;
     
     @Test
-	void getCustomersTest() {
+	void getAllBookDetailsTest() {
 		// Preparation
 		//new DAO - autowired
 		//add customers
-    	CustomerDAOImpl custDAO = new CustomerDAOImpl(entityManager);
+    	BookDAOImpl bookDAO = new BookDAOImpl(entityManager);
     	
-        entityManager.persist(new Customer("Filip", "", ""));
-        entityManager.persist(new Customer("Karel", "", ""));
-        entityManager.persist(new Customer("Petr", "", ""));
+        entityManager.persist(new BookDetails("karel", "", 20, ""));
+        entityManager.persist(new BookDetails("karel2", "", 20, ""));
 
 
 		
 		// Execution
 		//DAO.getCustomers - vrati list
-        int size = custDAO.getCustomers().size();
+        int size = bookDAO.getAllBookDetails().size();
+        System.out.println(size);
 		
 		// Assertion
 		//Assert
-		assertEquals(3, size);		
-		assertEquals("Karel", custDAO.getCustomer(2).getFirstName());
+		assertEquals(2, size);		
 	}
-	
-	
+
 }
