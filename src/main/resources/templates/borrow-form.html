@@ -15,16 +15,15 @@
 	<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"><h3>Customer directory</h3></header>
 	<div class="text-center"><p class="h4 mb-4 text center">Borrow a new copy</p></div>
 	   						<form action="x" 	th:action="@{/borrowings/saveBorrowing}"
-							th:object="${customer}"
+							th:object="${customers}"
 							method="POST">
 	<div class="container border-top py-3 text-left">
   			<div class="row">
     			<div class="col-sm">
     				<p class="py-1 mb-1">Customer:</p>
 
-							<input type="hidden" th:field="*{id}"/>
-							<select th:field="${customer.id}" class="form-select mb-2" size="16" style="width : 95.33%">
-					    		<option th:each="cus : ${customer}" th:text="*{firstName} + ' ' + *{lastName}" th:value="*{id}">
+							<select th:field="${borrowedId.customerId}" class="form-select mb-2" size="16" style="width : 95.33%">
+					    		<option th:each="cus : ${customers}" th:text="${cus.firstName} + ' ' + ${cus.lastName}" th:value="${cus.id}">
 					    		</option>
 							
 								</select>

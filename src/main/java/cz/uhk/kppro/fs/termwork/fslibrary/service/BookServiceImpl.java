@@ -120,6 +120,22 @@ public class BookServiceImpl implements BookService {
 		return 0;
 	}
 
+	//Return list of physical copies for a publication, that are available to be borrowed 
+	@Override
+	@Transactional
+	public List<PhysicalCopy> getAvailablePhysicalCopies(int id) {
+		BookDetails book = bookDAO.getBookDetailsById(id);
+		List<PhysicalCopy> copies = book.getPhysicalBooks();
+		List<PhysicalCopy> availableCopies = new ArrayList<>();
+		
+		// remove borrowed copies
+		for (PhysicalCopy copy : copies) {
+			if(copy.getBorrowed()==0) {
+				availableCopies.add(copy);
+			}
+		}
 
+		return availableCopies;
+	}
 
 }

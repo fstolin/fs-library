@@ -50,13 +50,13 @@
 			<tr th:each="tempBook : ${books}">
 				<td th:text="${tempBook.name}"/>
 				<td th:text="'placeholder'"/>
-				<td th:text="${tempBook.year}"/>
-				<td th:text="${tempBook.isbn}"/>
-				<td th:text="'placeholder'"/>
+				<td th:text="${tempBook.year}" style="text-align: center"/>
+				<td th:text="${tempBook.isbn}" style="text-align: center"/>
+				<td th:text="${#lists.size(tempBook.physicalBooks)}" style="text-align: center"/>
 				<td style="text-align: center">
-						<a 	th:href="@{/book/showFormForUpdate(BookId=${tempBook.id})}" class="btn btn-outline-primary btn-sm mb-1">Update</a>
-						<a 	th:href="@{/book/showBookDetail(BookId=${tempBook.id})}" class="btn btn-primary btn-sm mb-1">Detail</a>
-						<a 	th:href="@{/book/deleteBook(BookId=${tempBook.id})}" class="btn btn-danger btn-sm mb-1"
+						<a 	th:href="@{/book/showFormForUpdate(bookId=${tempBook.id})}" class="btn btn-primary btn-sm mb-1">Update</a>
+						<a 	th:href="@{/book/showBookDetail(bookId=${tempBook.id}, failCopy=false)}" class="btn btn-primary btn-sm mb-1">Detail</a>
+						<a 	th:href="@{/book/deleteBook(bookId=${tempBook.id})}" class="btn btn-danger btn-sm mb-1"
 							onclick="if (confirm('Are you sure you want to delete this publication	?')){window.location.href='${deleteLink}';} else { return false; }">Delete</a>
 							
 				</td>

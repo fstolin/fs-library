@@ -19,11 +19,11 @@
 						th:object="${copy}"
 						method="POST">
 		<input type="hidden" th:field="*{id}"/>
-		<select th:field="${bookDto.detailId}" class="form-select mb-2" size="4" style="width : 35.33%" required>
-    		<option th:each="detail : ${bookDto.details}" th:text="${detail.name}" th:value="${detail.id}">
+		<select th:field="${bookDto.detailId}" class="form-select mb-2" size="16" style="width : 65.33%" required>
+    		<option th:each="detail : ${bookDto.details}" th:text="${detail.name} + ', ' + ${detail.year} + ', ISBN: ' + ${detail.isbn}" th:value="${detail.id}">
     		</option>
 		</select>
-		<input required type="text" th:field="(${bookDto.amountOfCopies})" th:value="(${amountOfCopies})" class="form-control mb-4 col-2" placeholder="Number of copies" style="width : 35.33%" />
+		<input required type="text" th:field="(${bookDto.amountOfCopies})" th:value="(${amountOfCopies})" class="form-control mb-4 col-2" placeholder="Number of copies" style="width : 65.33%" />
 		<button type="button" onclick="window.location.href='/copies/list'" class="btn btn-danger col-2 me-3">Back</button><button type="submit" value="SAVE" class="btn btn-success col-2">Save</button>
 	</form>	
 </div>

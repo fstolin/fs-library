@@ -52,11 +52,14 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@Transactional
 	public void addCustomerBorrowing(int id, PhysicalCopy c) {
+		// Get the customer who borrows
 		Customer cust = getCustomer(id);
 		System.out.println(">> Inside addCustomerBorrowing " + cust);
 		System.out.println(">> PhysicalCopy " + c);
+		// Borrow the physical copy
 		cust.borrowPhysicalCopy(c);
 		System.out.println(">> Borrowed:  " + cust);
+		// Save the update
 		customerDAO.addCustomer(cust);
 	}
 

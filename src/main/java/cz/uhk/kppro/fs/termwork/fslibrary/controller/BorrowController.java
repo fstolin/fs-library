@@ -1,8 +1,7 @@
 package cz.uhk.kppro.fs.termwork.fslibrary.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,12 +32,37 @@ public class BorrowController {
 	@GetMapping("/showBorrowFormCust")
 	public String showBorrowForm(	Model theModel,
 									@RequestParam("customerId") int id) {
-		Customer customer = customerService.getCustomer(id);
+		// pass as List -> modality with customer borrow form
+		// and add a customer with customerId to the list
+		List<Customer> customers = new ArrayList<>();
+		customers.add(customerService.getCustomer(id));
+		
 		List<BookDetails> booksToBorrow = bookService.getAvailablePublications();
 		BorrowBookDTO dto = new BorrowBookDTO();
 		dto.setBookId(0);
+		dto.setCustomerId(id);
 
-		theModel.addAttribute("customer", customer);
+		theModel.addAttribute("customers", customers);
+		theModel.addAttribute("books", booksToBorrow);
+		theModel.addAttribute("borrowedId", dto);
+		
+		return "borrow-form";
+	}
+	
+	@GetMapping("/showBorrowFormBook")
+	public String showBorrowFormBook(	Model theModel,
+										@RequestParam("bookId") int id) {
+		// pass as List -> modality with customer borrow form
+		// and add a book DetailID to the list
+		List<BookDetails> booksToBorrow = new ArrayList<>();
+		booksToBorrow.add(bookService.getBookDetailsById(id));
+		
+		List<Customer> customers = customerService.getCustomers();
+		BorrowBookDTO dto = new BorrowBookDTO();
+		dto.setBookId(id);
+		dto.setCustomerId(0);
+
+		theModel.addAttribute("customers", customers);
 		theModel.addAttribute("books", booksToBorrow);
 		theModel.addAttribute("borrowedId", dto);
 		
@@ -49,6 +73,7 @@ public class BorrowController {
 	public String saveBorrowing(	@ModelAttribute("customer") Customer customer,
 									@ModelAttribute("borrowedId") BorrowBookDTO dto) {
 		// customer ID + DetailBook id
+		Customer cuztomer = customerService.getCustomer(dto.getCustomerId());
 		int physicalCopyID = bookService.setBorrowedByDetailsId(dto.getBookId());
 		// Sanity check - this shoudl never happen
 		if (physicalCopyID==0) throw new RuntimeException("PhyisicalCOpyID equals 0 -> that would mean, that user tried to borrow a borrowed / unexisting book");
@@ -57,10 +82,10 @@ public class BorrowController {
 		// Debug log
 		System.out.println(">> Inside saveBorrowing copy: " + copy);
 		// Perform the borrowing
-		customerService.addCustomerBorrowing(customer.getId(), copy);
+		customerService.addCustomerBorrowing(cuztomer.getId(), copy);
 		
 		
-		return "redirect:/customer/showCustomerDetail?customerId=" + customer.getId() + "&success=true";
+		return "redirect:/customer/showCustomerDetail?customerId=" + cuztomer.getId() + "&success=true";
 	}
 	
 

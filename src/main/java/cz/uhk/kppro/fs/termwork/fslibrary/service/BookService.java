@@ -29,5 +29,7 @@ public interface BookService {
 	List<BookDetails> getAvailablePublications();
 	
 	public int setBorrowedByDetailsId(int id);
+
+	List<PhysicalCopy> getAvailablePhysicalCopies(int id);
 	
 }
