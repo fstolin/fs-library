@@ -29,6 +29,7 @@ public class BorrowController {
 	@Autowired
 	private CustomerService customerService;
 	
+	// Borrowing form with predefined customer 
 	@GetMapping("/showBorrowFormCust")
 	public String showBorrowForm(	Model theModel,
 									@RequestParam("customerId") int id) {
@@ -49,6 +50,7 @@ public class BorrowController {
 		return "borrow-form";
 	}
 	
+	// Borrowing form with predefined Book to borrow
 	@GetMapping("/showBorrowFormBook")
 	public String showBorrowFormBook(	Model theModel,
 										@RequestParam("bookId") int id) {
@@ -60,6 +62,25 @@ public class BorrowController {
 		List<Customer> customers = customerService.getCustomers();
 		BorrowBookDTO dto = new BorrowBookDTO();
 		dto.setBookId(id);
+		dto.setCustomerId(0);
+
+		theModel.addAttribute("customers", customers);
+		theModel.addAttribute("books", booksToBorrow);
+		theModel.addAttribute("borrowedId", dto);
+		
+		return "borrow-form";
+	}
+	
+	// Borrowing form from neither book, nor a customer
+	@GetMapping("/showBorrowFormNone")
+	public String showBorrowFormNone(Model theModel) {
+		// pass as List -> modality with customer borrow form
+		// and add a book DetailID to the list
+		List<BookDetails> booksToBorrow = bookService.getAvailablePublications();		
+		List<Customer> customers = customerService.getCustomers();
+		
+		BorrowBookDTO dto = new BorrowBookDTO();
+		dto.setBookId(0);
 		dto.setCustomerId(0);
 
 		theModel.addAttribute("customers", customers);
@@ -87,19 +108,22 @@ public class BorrowController {
 	}
 	
 	@GetMapping("/returnBook")
-	public String returnBook (@RequestParam("copyId") int copyId, Model theModel) {
+	public String returnBook (@RequestParam("copyId") int copyId, @RequestParam("sourcePage") String source, Model theModel) {
 		// Temporary implementation, Many to Many relation is scalable for history etc. Currently not implemented
 		int customerId = bookService.getFirstBorrower(copyId);
 		PhysicalCopy copy = bookService.getBookCopy(copyId);
 		customerService.returnCustomerBorrowing(customerId, copy);
-		return ("redirect:/copies/list");
+		if (source.equals("borrowList")) {
+			return("redirect:/borrowings/list");
+		} else {
+			return ("redirect:/copies/list");
+		}		
 	}
 	
 	@GetMapping("/list")
 	public String showBorrowingList(Model theModel) {
-		List<Customer> customers = customerService.getCustomers();
 		List<PhysicalCopy> borrowedCopies = bookService.getAllBorrowedPhysicalCopies();
-		
+		theModel.addAttribute("copies", borrowedCopies);
 		return "borrow-list";
 	}
 	

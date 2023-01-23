@@ -33,7 +33,7 @@
 			<tr class="table-dark text-center align-middle">
 				<th>Name</th>
 				<th>Borrower</th>
-				<th>Borrowed</th>th>
+				<th>Borrowed</th>
 				<th>					<a 	th:href="@{/copies/showFormForAdd}"
 					class="btn btn-outline-warning">Add copies</a>
 					</th>
@@ -51,7 +51,7 @@
 				<td th:text="${tempBook.borrowed}" style="text-align: center"/>
 				<td style="text-align: center">
 						<!-- - TH IF -->
-						<a 	th:if="${tempBook.borrowed==1}"  th:href="@{/borrowings/returnBook(copyId=${tempBook.id})}" class="btn btn-primary btn-sm mb-1">Return</a>
+						<a 	th:if="${tempBook.borrowed==1}"  th:href="@{/borrowings/returnBook(copyId=${tempBook.id}, sourcePage='copiesList')}" class="btn btn-primary btn-sm mb-1">Return</a>
 						
 						<a 	th:unless="${tempBook.borrowed==1}" th:href="@{/copies/deleteCopy(copyId=${tempBook.id})}" class="btn btn-danger btn-sm mb-1"
 							onclick="if (confirm('Are you sure you want to delete this copy?')){window.location.href='${deleteLink}';} else { return false; }">Delete</a>

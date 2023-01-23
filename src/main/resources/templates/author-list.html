@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FS Library</title>
+    <title>Author list</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -24,38 +24,11 @@
 			</div>
 		</div>
 		<div class="container text-center">
-			<p class="border-bottom py4"> <h3>Borrowings list</h3></p>
+			<p class="border-bottom py4"> <h3>Author list</h3></p>
 		</div>
 		<!--  END OF HEADER -->
-		
-
 	
-	<table class="table table-hover table-bordered table-striped">
-		<thead>
-			<tr class="table-dark text-center align-middle">
-				<th >Customer</th>
-				<th>Publication</th>
-				<th class="text-center align-middle">				<!--  Add Button for adding books -->
-					<a 	th:href="@{/borrowings/showBorrowFormNone}"
-					class="btn btn-outline-warning">New borrowing</a>
-				</th>				
-			</tr>
-		</thead>	
-		<tbody>	
-
-		
-			<tr th:each="copy : ${copies}" class="text-center">
-				<td th:text="${copy.getFirstBorrower()}"/>
-				<td th:text="${copy.bookDetails.name}"/>
-				<td style="text-align: center">
-						<a 	th:href="@{/borrowings/returnBook(copyId=${copy.id}, sourcePage='borrowList')}" class="btn btn-warning btn-sm mb-1">Return</a>
-				</td>
-
-			</tr>
-		</tbody>	
-	</table>
-							<a 	th:href="@{/book/addPublication}"
-					class="btn btn-secondary">New borrowing</a>
+Unimplemented :(
 </div>
 </body>
 </html>
