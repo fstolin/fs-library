@@ -17,24 +17,56 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-sm text-center"><a th:href="@{/customer/list}" class="btn btn-secondary mb-2">Customers</a></div>
-				<div class="col-sm text-center"><a th:href="@{/book/list}" class="btn btn-secondary mb-2">Publications</a></div>
-				<div class="col-sm text-center"><a th:href="@{/copies/list}" class="btn btn-secondary mb-2">Copies</a></div>
-				<div class="col-sm text-center"><a th:href="@{/borrowings/list}" class="btn btn-secondary mb-2">Borrowings</a></div>
-				<div class="col-sm text-center"> <a th:href="@{/author/list}" class="btn btn-secondary mb-2">Authors</a></div>
+				<div class="col-sm text-center">
+					<a th:href="@{/customer/list}" class="btn btn-secondary mb-2">Customers</a>
+				</div>
+				<div class="col-sm text-center">
+					<a th:href="@{/book/list}" class="btn btn-secondary mb-2">Publications</a>
+				</div>
+				<div class="col-sm text-center">
+					<a th:href="@{/copies/list}" class="btn btn-secondary mb-2">Copies</a>
+				</div>
+				<div class="col-sm text-center">
+					<a th:href="@{/borrowings/list}" class="btn btn-secondary mb-2">Borrowings</a>
+				</div>
+				<div class="col-sm text-center">
+					<a th:href="@{/author/list}" class="btn btn-secondary mb-2">Authors</a>
+				</div>
 			</div>
 		</div>
 		<div class="container">
-			<p class="border-bottom py4"> </p>
+			<p class="border-bottom py4"></p>
 		</div>
-		
-				<!--  END OF HEADER -->
-		
 
-		
+		<!--  END OF HEADER -->
+		<div class="container">
+			<div class="container">
+				<div class="row text-center" >
+					<div class="col-sm"></div>
+					<div class="col-sm text-justify">
+							<p class="p-2">Welcome to FS Library, Library management
+								system. To begin, start adding customers, publications and
+								physical copies. Then start managing borrowings.</p>
+							<p class="p-2">FS Library system provides the ultimate tools
+								to manage your library, that you ever dreamed of. In case
+								you always wanted to lead your own library, now is the time
+								to begin with our FS Library system.</p>
+							<a th:href="@{/borrowings/showBorrowFormNone}" class="btn btn-warning">New
+								borrowing</a>
+						</div>
+					<div class="col-sm"></div>
+				</div>
+				<div class="text-center">
+					
 
-		
+				</div>
 
-	</div>
+			</div>
+
+
+
+
+
+		</div>
 </body>
 </html>
