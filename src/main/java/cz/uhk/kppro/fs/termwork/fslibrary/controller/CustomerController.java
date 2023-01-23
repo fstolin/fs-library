@@ -41,11 +41,13 @@ public class CustomerController {
 		return "cust-form";
 	}
 	
-	// Saving customer from form
+	// Saving customer from form - udpate and new one
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-		//System.out.println(">> Customer reg date:"  + customer.getRegistrationDate() + "Null: " + customer.getRegistrationDate().equals(null) + "empty: " + customer.getRegistrationDate().equals(""));
+		System.out.println(customer);
+		// temporar Customer, whic will hold the new data of passed customersId from update form
 		Customer tempCustomer;
+		// decide whether customer is new or not
 		if (customer.getId() != 0) {
 			tempCustomer = customerService.getCustomer(customer.getId());
 		} else {

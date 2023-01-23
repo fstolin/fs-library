@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Transactional
 	public void saveCustomer(Customer customer) {
 		// Date of registration - only for new customers
-		if (customer.getRegistrationDate().equals("") || customer.getRegistrationDate().isEmpty() || customer.getRegistrationDate().equals(null)) {
+		if (customer.getRegistrationDate() == null || customer.getRegistrationDate().isEmpty() || customer.getRegistrationDate().equals("")) {
 			customer.setOriginalRegistrationDate();
 		}
 		customerDAO.addCustomer(customer);		
