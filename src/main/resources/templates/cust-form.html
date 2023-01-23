@@ -19,6 +19,7 @@
 						th:object="${customer}"
 						method="POST">
 		<input type="hidden" th:field="*{id}"/>
+		<!--  <input type="hidden" th:field="${customer.borrowedCopies}"/> -->
 		<input type="hidden" th:field="*{registrationDate}"/>
 		<input type="text" th:field="*{firstName}" class="form-control mb-4 col-2" placeholder="First name" style="width : 35.33%" required />
 		<input type="text" th:field="*{lastName}" class="form-control mb-4 col-2" placeholder="Last name" style="width : 35.33%" required/>

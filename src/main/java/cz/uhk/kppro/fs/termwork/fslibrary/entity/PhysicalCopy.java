@@ -85,8 +85,14 @@ public class PhysicalCopy {
 		return "PhysicalCopy [id=" + id + ", bookDetailId=" + ", borrowed=" + borrowed + "]";
 	}	
 	
+	// Temp implementation of getting the actual borrower
 	public String getFirstBorrower() {
-		return borrowers.get(0).getFirstName();
+		if (borrowers.size()==0) {
+			return "";
+		} else {
+			String returnString = ("" + borrowers.get(0).getFirstName() + " " + borrowers.get(0).getLastName());
+			return returnString;
+		}
 	}
 	
 }

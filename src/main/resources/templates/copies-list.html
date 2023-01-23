@@ -32,7 +32,8 @@
 		<thead>
 			<tr class="table-dark text-center align-middle">
 				<th>Name</th>
-				<th>Borrowed</th>
+				<th>Borrower</th>
+				<th>Borrowed</th>th>
 				<th>					<a 	th:href="@{/copies/showFormForAdd}"
 					class="btn btn-outline-warning">Add copies</a>
 					</th>
@@ -43,6 +44,10 @@
 		
 			<tr th:each="tempBook : ${copies}">
 				<td th:text="${tempBook.bookDetails.name} + ', ' + ${tempBook.bookDetails.year} + ', ISBN: ' + ${tempBook.bookDetails.isbn}"/>
+				<!-- TH IF -->
+				<td th:if="${tempBook.borrowed==1}" th:text="${tempBook.getFirstBorrower()}" style="text-align: center"/>
+				<td th:unless="${tempBook.borrowed==1}" th:text="''" style="text-align: center"/>
+				<!-- END -->
 				<td th:text="${tempBook.borrowed}" style="text-align: center"/>
 				<td style="text-align: center">
 						<!-- - TH IF -->

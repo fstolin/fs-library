@@ -45,7 +45,12 @@ public class CustomerController {
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
 		//System.out.println(">> Customer reg date:"  + customer.getRegistrationDate() + "Null: " + customer.getRegistrationDate().equals(null) + "empty: " + customer.getRegistrationDate().equals(""));
-		customerService.saveCustomer(customer);
+		Customer tempCustomer = customerService.getCustomer(customer.getId());
+		tempCustomer.setFirstName(customer.getFirstName());
+		tempCustomer.setLastName(customer.getLastName());
+		tempCustomer.setEmail(customer.getEmail());
+		
+		customerService.saveCustomer(tempCustomer);
 		return "redirect:/customer/list";
 	}
 	
