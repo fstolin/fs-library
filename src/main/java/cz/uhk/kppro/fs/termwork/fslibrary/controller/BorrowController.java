@@ -82,11 +82,28 @@ public class BorrowController {
 		// Debug log
 		System.out.println(">> Inside saveBorrowing copy: " + copy);
 		// Perform the borrowing
-		customerService.addCustomerBorrowing(cuztomer.getId(), copy);
-		
-		
+		customerService.addCustomerBorrowing(cuztomer.getId(), copy);		
 		return "redirect:/customer/showCustomerDetail?customerId=" + cuztomer.getId() + "&success=true";
 	}
+	
+	@GetMapping("/returnBook")
+	public String returnBook (@RequestParam("copyId") int copyId, Model theModel) {
+		// Temporary implementation, Many to Many relation is scalable for history etc. Currently not implemented
+		int customerId = bookService.getFirstBorrower(copyId);
+		PhysicalCopy copy = bookService.getBookCopy(copyId);
+		customerService.returnCustomerBorrowing(customerId, copy);
+		return ("redirect:/copies/list");
+	}
+	
+	@GetMapping("/list")
+	public String showBorrowingList(Model theModel) {
+		List<Customer> customers = customerService.getCustomers();
+		List<PhysicalCopy> borrowedCopies = bookService.getAllBorrowedPhysicalCopies();
+		
+		return "borrow-list";
+	}
+	
+	
 	
 
 }

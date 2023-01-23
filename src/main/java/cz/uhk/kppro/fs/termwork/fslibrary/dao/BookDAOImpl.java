@@ -72,4 +72,10 @@ public class BookDAOImpl implements BookDAO {
 		theQuery.executeUpdate();		
 	}
 
+	@Override
+	public List<PhysicalCopy> getAllBorrowedBookCopies() {
+		TypedQuery<PhysicalCopy> theQuery = entityManager.createQuery("from PhysicalCopy where borrowed = 1 order by bookDetails", PhysicalCopy.class);
+		return theQuery.getResultList();
+	}
+
 }

@@ -54,18 +54,25 @@ public class CustomerServiceImpl implements CustomerService {
 	public void addCustomerBorrowing(int id, PhysicalCopy c) {
 		// Get the customer who borrows
 		Customer cust = getCustomer(id);
-		System.out.println(">> Inside addCustomerBorrowing " + cust);
-		System.out.println(">> PhysicalCopy " + c);
 		// Borrow the physical copy
 		cust.borrowPhysicalCopy(c);
-		System.out.println(">> Borrowed:  " + cust);
 		// Save the update
 		customerDAO.addCustomer(cust);
 	}
 
 	@Override
+	@Transactional
+	public void returnCustomerBorrowing(int id, PhysicalCopy c) {
+		Customer cust = getCustomer(id);
+		cust.returnPhysicalCopy(c);
+		c.setBorrowed(0);
+		customerDAO.addCustomer(cust);
+	}
+
+	@Override
 	public List<PhysicalCopy> getAllBorrowingsByID(int id) {
-		// TODO unimpl
+		// TODO Unimpl
 		return null;
 	}
+	
 }

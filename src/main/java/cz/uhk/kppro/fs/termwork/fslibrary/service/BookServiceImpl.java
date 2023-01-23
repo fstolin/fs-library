@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.uhk.kppro.fs.termwork.fslibrary.dao.BookDAO;
 import cz.uhk.kppro.fs.termwork.fslibrary.entity.BookDetails;
+import cz.uhk.kppro.fs.termwork.fslibrary.entity.Customer;
 import cz.uhk.kppro.fs.termwork.fslibrary.entity.PhysicalCopy;
 
 @Service
@@ -136,6 +137,19 @@ public class BookServiceImpl implements BookService {
 		}
 
 		return availableCopies;
+	}
+	
+	// Temporary implementation, Many to Many relation is scalable for history etc. Currently not implemented
+	@Override
+	@Transactional
+	public int getFirstBorrower(int id) {
+		Customer cust = bookDAO.getBookCopyById(id).getBorrowers().get(0);
+		return cust.getId();
+	}
+
+	@Override
+	public List<PhysicalCopy> getAllBorrowedPhysicalCopies() {
+		return bookDAO.getAllBorrowedBookCopies();
 	}
 
 }

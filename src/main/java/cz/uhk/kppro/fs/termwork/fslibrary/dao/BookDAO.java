@@ -27,5 +27,7 @@ public interface BookDAO {
 	public BookDetails getBookDetailsById(int id);
 	
 	public void deleteBookDetailsById(int id);
+	
+	public List<PhysicalCopy> getAllBorrowedBookCopies();
 
 }

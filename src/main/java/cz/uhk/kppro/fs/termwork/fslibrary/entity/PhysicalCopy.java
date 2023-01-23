@@ -43,6 +43,14 @@ public class PhysicalCopy {
 			)
 	private List<Customer> borrowers;
 	
+	public List<Customer> getBorrowers() {
+		return borrowers;
+	}
+
+	public void setBorrowers(List<Customer> borrowers) {
+		this.borrowers = borrowers;
+	}
+
 	public PhysicalCopy() {	
 		
 	}
@@ -77,6 +85,8 @@ public class PhysicalCopy {
 		return "PhysicalCopy [id=" + id + ", bookDetailId=" + ", borrowed=" + borrowed + "]";
 	}	
 	
-	
+	public String getFirstBorrower() {
+		return borrowers.get(0).getFirstName();
+	}
 	
 }

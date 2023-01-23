@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FS Library - Customer form</title>
+    <title>FS Library</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -24,43 +24,44 @@
 			</div>
 		</div>
 		<div class="container text-center">
-			<p class="border-bottom py4"> <h3>Customer list</h3></p>
+			<p class="border-bottom py4"> <h3>Borrowings list</h3></p>
 		</div>
 		<!--  END OF HEADER -->
+		
+
 	
 	<table class="table table-hover table-bordered table-striped">
 		<thead>
 			<tr class="table-dark text-center align-middle">
-				<th>First name</th>
-				<th>Last name</th>
-				<th>Email</th>
-				<th>Date of registration</th>
-				<th>	<a 	th:href="@{/customer/showFormForAdd}"
-		class="btn btn-outline-warning">New customer</a></th>
+				<th >Customer</th>
+				<th>Publication</th>
+				<th class="text-center align-middle">				<!--  Add Button for adding books -->
+					<a 	th:href="@{/borrowings/showBorrowFormNone}"
+					class="btn btn-outline-warning">New borrowing</a>
+				</th>				
 			</tr>
 		</thead>	
 		<tbody>	
 
 		
-			<tr th:each="tempCustomer : ${customers}">
-				<td th:text="${tempCustomer.firstName}"/>
-				<td th:text="${tempCustomer.lastName}"/>
-				<td th:text="${tempCustomer.email}"/>
-				<td th:text="${tempCustomer.registrationDate}"/>
+			<tr th:each="tempBook : ${books}">
+				<td th:text="${tempBook.name}"/>
+				<td th:text="'placeholder'"/>
+				<td th:text="${tempBook.year}" style="text-align: center"/>
+				<td th:text="${tempBook.isbn}" style="text-align: center"/>
+				<td th:text="${#lists.size(tempBook.physicalBooks)}" style="text-align: center"/>
 				<td style="text-align: center">
-						<a 	th:href="@{/customer/showFormForUpdate(customerId=${tempCustomer.id})}" class="btn btn-primary btn-sm mb-1">Update</a>
-						<a 	th:href="@{/customer/showCustomerDetail(customerId=${tempCustomer.id})}" class="btn btn-primary btn-sm mb-1">Detail</a>
-						<a 	th:href="@{/customer/deleteCustomer(customerId=${tempCustomer.id})}" class="btn btn-danger btn-sm mb-1"
-							onclick="if (confirm('Are you sure you want to delete this customer?')){window.location.href='${deleteLink}';} else { return false; }">Delete</a>
+						<a 	th:href="@{/book/showFormForUpdate(bookId=${tempBook.id})}" class="btn btn-primary btn-sm mb-1">Update</a>
+						<a 	th:href="@{/book/showBookDetail(bookId=${tempBook.id}, failCopy=false)}" class="btn btn-primary btn-sm mb-1">Detail</a>
+						<a 	th:href="@{/book/deleteBook(bookId=${tempBook.id})}" class="btn btn-danger btn-sm mb-1"
+							onclick="if (confirm('Are you sure you want to delete this publication	?')){window.location.href='${deleteLink}';} else { return false; }">Delete</a>
 							
 				</td>
 			</tr>
 		</tbody>	
 	</table>
-	
-		<!--  Add Button for adding Customers -->
-	<a 	th:href="@{/customer/showFormForAdd}"
-		class="btn btn-secondary mb-2">New Customer</a>
+							<a 	th:href="@{/book/addPublication}"
+					class="btn btn-secondary">New publication</a>
 </div>
 </body>
 </html>

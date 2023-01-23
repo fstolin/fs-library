@@ -135,9 +135,8 @@ public class Customer {
 	
 	public void returnPhysicalCopy(PhysicalCopy copy) {
 		if (borrowedCopies == null) {
-			borrowedCopies = new ArrayList<>();
-		}
-		
+			throw new RuntimeException("Trying to return unborrowed book");
+		}		
 		borrowedCopies.remove(copy);
 	}
 	

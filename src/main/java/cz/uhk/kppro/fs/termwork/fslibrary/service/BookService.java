@@ -32,4 +32,8 @@ public interface BookService {
 
 	List<PhysicalCopy> getAvailablePhysicalCopies(int id);
 	
+	List<PhysicalCopy> getAllBorrowedPhysicalCopies();
+
+	int getFirstBorrower(int id);
+	
 }

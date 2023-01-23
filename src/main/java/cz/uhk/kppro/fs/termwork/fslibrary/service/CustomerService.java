@@ -20,4 +20,6 @@ public interface CustomerService {
 
 	void addCustomerBorrowing(int id, PhysicalCopy c);
 	
+	void returnCustomerBorrowing(int id, PhysicalCopy c);
+	
 }
